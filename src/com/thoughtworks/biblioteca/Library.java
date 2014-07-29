@@ -1,17 +1,17 @@
 package com.thoughtworks.biblioteca;
 
 import java.io.PrintStream;
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by kristinebrown on 7/29/14.
  *
  */
 public class Library {
-    private ArrayList<String> books;
+    private List<String> books;
     private PrintStream out;
 
-    public Library(ArrayList<String> books, PrintStream out) {
+    public Library(List<String> books, PrintStream out) {
 
         this.books = books;
         this.out = out;
