@@ -16,6 +16,8 @@ public class Library {
     }
 
     public void displayBooks(PrintStream out) {
-        out.println(books.get(0));
+        for (String book : books) {
+            out.println(book);
+        }
     }
 }
