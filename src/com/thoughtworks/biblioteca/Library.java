@@ -15,6 +15,10 @@ public class Library {
         this.books = books;
     }
 
+    public void welcome(PrintStream out) {
+        out.println("Welcome!");
+    }
+
     public void displayBooks(PrintStream out) {
         for (String book : books) {
             out.println(book);

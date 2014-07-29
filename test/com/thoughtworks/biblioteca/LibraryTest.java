@@ -39,4 +39,14 @@ public class LibraryTest {
         verify(fakePrintStream, times(0)).println();
     }
 
+    @Test
+    public void welcomeMessage(){
+        ArrayList<String> books = new ArrayList<String>();
+        Library myLibrary = new Library(books);
+
+        myLibrary.welcome(fakePrintStream);
+
+        verify(fakePrintStream).println("Welcome!");
+    }
+
 }
