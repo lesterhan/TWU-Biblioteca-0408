@@ -11,9 +11,11 @@ public class Main {
     }
 
     private static Library library() {
-        List<String> listOfBooks = new ArrayList<String>();
-        listOfBooks.add("Book 1");
-        listOfBooks.add("Book 2");
+        List<Book> listOfBooks = new ArrayList<Book>();
+        Book book1 = new Book("Book 1", "", "");
+        Book book2 = new Book("Book 2", "", "");
+        listOfBooks.add(book1);
+        listOfBooks.add(book2);
         return new Library(listOfBooks, System.out);
     }
 }

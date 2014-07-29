@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
@@ -22,8 +23,9 @@ public class LibraryTest {
 
     @Test
     public void shouldPrintOneBookWhenLibraryHasOneBook(){
-        ArrayList<String> oneBook = new ArrayList<String>();
-        oneBook.add("BookName");
+        List<Book> oneBook = new ArrayList<Book>();
+        Book book1 = new Book("BookName", "", "");
+        oneBook.add(book1);
         Library myLibrary = new Library(oneBook, fakePrintStream);
 
         myLibrary.displayBooks();
@@ -32,7 +34,7 @@ public class LibraryTest {
 
     @Test
     public void shouldPrintNothingWhenLibraryIsEmpty(){
-        ArrayList<String> noBooks = new ArrayList<String>();
+        List<Book> noBooks = new ArrayList<Book>();
         Library myLibrary = new Library(noBooks, fakePrintStream);
 
         myLibrary.displayBooks();
@@ -41,7 +43,7 @@ public class LibraryTest {
 
     @Test
     public void welcomeMessage(){
-        ArrayList<String> books = new ArrayList<String>();
+        List<Book> books = new ArrayList<Book>();
         Library myLibrary = new Library(books, fakePrintStream);
 
         myLibrary.welcome();
