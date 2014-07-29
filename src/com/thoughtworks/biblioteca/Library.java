@@ -9,17 +9,19 @@ import java.util.ArrayList;
  */
 public class Library {
     private ArrayList<String> books;
+    private PrintStream out;
 
-    public Library(ArrayList<String> books) {
+    public Library(ArrayList<String> books, PrintStream out) {
 
         this.books = books;
+        this.out = out;
     }
 
-    public void welcome(PrintStream out) {
+    public void welcome() {
         out.println("Welcome!");
     }
 
-    public void displayBooks(PrintStream out) {
+    public void displayBooks() {
         for (String book : books) {
             out.println(book);
         }

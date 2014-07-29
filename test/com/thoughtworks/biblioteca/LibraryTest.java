@@ -14,6 +14,7 @@ public class LibraryTest {
 
     private PrintStream fakePrintStream;
 
+
     @Before
     public void setup(){
         fakePrintStream = mock(PrintStream.class);
@@ -23,29 +24,27 @@ public class LibraryTest {
     public void shouldPrintOneBookWhenLibraryHasOneBook(){
         ArrayList<String> oneBook = new ArrayList<String>();
         oneBook.add("BookName");
-        Library myLibrary = new Library(oneBook);
+        Library myLibrary = new Library(oneBook, fakePrintStream);
 
-        myLibrary.displayBooks(fakePrintStream);
-
+        myLibrary.displayBooks();
         verify(fakePrintStream).println("BookName");
     }
 
     @Test
     public void shouldPrintNothingWhenLibraryIsEmpty(){
         ArrayList<String> noBooks = new ArrayList<String>();
-        Library myLibrary = new Library(noBooks);
+        Library myLibrary = new Library(noBooks, fakePrintStream);
 
-        myLibrary.displayBooks(fakePrintStream);
+        myLibrary.displayBooks();
         verify(fakePrintStream, times(0)).println();
     }
 
     @Test
     public void welcomeMessage(){
         ArrayList<String> books = new ArrayList<String>();
-        Library myLibrary = new Library(books);
+        Library myLibrary = new Library(books, fakePrintStream);
 
-        myLibrary.welcome(fakePrintStream);
-
+        myLibrary.welcome();
         verify(fakePrintStream).println("Welcome!");
     }
 

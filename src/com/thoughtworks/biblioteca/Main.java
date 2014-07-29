@@ -9,8 +9,8 @@ public class Main {
         ArrayList<String> listOfBooks = new ArrayList<String>();
         listOfBooks.add("Book 1");
         listOfBooks.add("Book 2");
-        Library library = new Library(listOfBooks);
-        library.welcome(System.out);
-        library.displayBooks(System.out);
+        Library library = new Library(listOfBooks, System.out);
+        library.welcome();
+        library.displayBooks();
     }
 }
