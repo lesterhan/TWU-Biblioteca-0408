@@ -20,12 +20,13 @@ public class Application {
         library.welcome();
         displayMenu();
         String input = getInput();
-        if (input.equals("1")) {
-            library.displayBooks();
+        while(!input.equals("1")) {
+            out.println("Select a valid option!");
+            displayMenu();
+            input = getInput();
         }
-        else {
-            out.println("Error, invalid input!");
-        }
+        library.displayBooks();
+
     }
 
     public void displayMenu() {
