@@ -7,7 +7,7 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        new Application(library()).start();
+        new Application(library(), System.out).start();
     }
 
     private static Library library() {
