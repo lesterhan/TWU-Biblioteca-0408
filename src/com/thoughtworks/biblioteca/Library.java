@@ -19,7 +19,7 @@ public class Library {
 
     public void displayBooks() {
         for (Book book : books) {
-            out.println(book.getTitle());
+            out.println(book.getDetails());
         }
     }
 }

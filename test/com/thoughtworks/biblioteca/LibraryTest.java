@@ -24,12 +24,12 @@ public class LibraryTest {
     @Test
     public void shouldPrintOneBookWhenLibraryHasOneBook(){
         List<Book> oneBook = new ArrayList<Book>();
-        Book book1 = new Book("BookName", "", "");
+        Book book1 = new Book("BookName", "BookAuthor", "2000");
         oneBook.add(book1);
         Library myLibrary = new Library(oneBook, fakePrintStream);
 
         myLibrary.displayBooks();
-        verify(fakePrintStream).println("BookName");
+        verify(fakePrintStream).println("BookName                       BookAuthor                     2000");
     }
 
     @Test

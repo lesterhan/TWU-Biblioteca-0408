@@ -11,7 +11,17 @@ public class Book {
         this.publishDate = publishDate;
     }
 
-    public String getTitle() {
-        return title;
+    public String getDetails() {
+        String titleToPrint = shortenTextIfNecessary(title);
+        String authorToPrint = shortenTextIfNecessary(author);
+        return String.format("%-30s %-30s %-4s", titleToPrint, authorToPrint, publishDate);
+    }
+
+    private String shortenTextIfNecessary(String text) {
+        if (text.length() > 30) {
+            return text.substring(0, 27) + "...";
+        } else {
+            return text;
+        }
     }
 }
