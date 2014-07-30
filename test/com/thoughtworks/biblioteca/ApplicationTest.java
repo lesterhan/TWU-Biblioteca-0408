@@ -41,20 +41,19 @@ public class ApplicationTest {
 
     @Test
     public void shouldGetUserInputWhenMenuDisplays(){
-        application.displayMenu();
         assertThat(application.getInput(), is("1"));
     }
 
     @Test
     public void shouldDisplayBooksWhenOption1IsChosen(){
-        application.displayMenu();
+        application.start();
         verify(library).displayBooks();
     }
 
     @Test
     public void shouldPrintErrorMessageWhenInvalidOptionIsChosen() {
         Application app = new Application(library, fakePrintStream, new BufferedReader(new StringReader("2")));
-        app.displayMenu();
+        app.start();
         verify(fakePrintStream).println("Error, invalid input!");
     }
 

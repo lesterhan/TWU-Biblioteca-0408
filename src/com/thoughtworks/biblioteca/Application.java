@@ -19,10 +19,6 @@ public class Application {
     public void start() {
         library.welcome();
         displayMenu();
-    }
-
-    public void displayMenu() {
-        out.println("1. List books");
         String input = getInput();
         if (input.equals("1")) {
             library.displayBooks();
@@ -30,6 +26,11 @@ public class Application {
         else {
             out.println("Error, invalid input!");
         }
+    }
+
+    public void displayMenu() {
+        out.println("1. List books");
+        out.print("Enter option number: ");
     }
 
     public String getInput() {
