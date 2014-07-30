@@ -1,15 +1,19 @@
 package com.thoughtworks.biblioteca;
 
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.PrintStream;
 
 public class Application {
 
     Library library;
     PrintStream out;
+    BufferedReader in;
 
-    public Application(Library library, PrintStream out) {
+    public Application(Library library, PrintStream out, BufferedReader in) {
         this.library = library;
         this.out = out;
+        this.in = in;
     }
 
     public void start() {
@@ -17,7 +21,20 @@ public class Application {
         displayMenu();
     }
 
-    private void displayMenu() {
+    public void displayMenu() {
         out.println("1. List books");
+        String input = getInput();
+        if (input.equals("1")) {
+            library.displayBooks();
+        }
+    }
+
+    public String getInput() {
+        try {
+            return this.in.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
