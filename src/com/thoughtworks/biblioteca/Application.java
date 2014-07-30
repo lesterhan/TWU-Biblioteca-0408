@@ -26,7 +26,6 @@ public class Application {
             input = getInput();
         }
         library.displayBooks();
-
     }
 
     public void displayMenu() {

@@ -37,8 +37,7 @@ public class ApplicationTest {
     @Test
     public void shouldDisplayMenuWhenStarting(){
         application.start();
-        verify(fakePrintStream).println("1. List books");
-        verify(fakePrintStream).print("Enter option number: ");
+        verifyMenuDisplayedTimes(1);
     }
 
     @Test
@@ -57,9 +56,13 @@ public class ApplicationTest {
         Application app = new Application(library, fakePrintStream, new BufferedReader(new StringReader("2\n1")));
         app.start();
         verify(fakePrintStream).println("Select a valid option!");
-        verify(fakePrintStream, times(2)).println("1. List books");
-        verify(fakePrintStream, times(2)).print("Enter option number: ");
+        verifyMenuDisplayedTimes(2);
         verify(library).displayBooks();
+    }
+
+    private void verifyMenuDisplayedTimes(int t) {
+        verify(fakePrintStream, times(t)).println("1. List books");
+        verify(fakePrintStream, times(t)).print("Enter option number: ");
     }
 
 }
