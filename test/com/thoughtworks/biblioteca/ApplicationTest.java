@@ -51,4 +51,11 @@ public class ApplicationTest {
         verify(library).displayBooks();
     }
 
+    @Test
+    public void shouldPrintErrorMessageWhenInvalidOptionIsChosen() {
+        Application app = new Application(library, fakePrintStream, new BufferedReader(new StringReader("2")));
+        app.displayMenu();
+        verify(fakePrintStream).println("Error, invalid input!");
+    }
+
 }

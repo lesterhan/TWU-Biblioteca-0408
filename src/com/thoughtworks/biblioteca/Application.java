@@ -27,6 +27,9 @@ public class Application {
         if (input.equals("1")) {
             library.displayBooks();
         }
+        else {
+            out.println("Error, invalid input!");
+        }
     }
 
     public String getInput() {
