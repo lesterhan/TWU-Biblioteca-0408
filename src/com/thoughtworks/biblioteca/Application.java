@@ -20,16 +20,20 @@ public class Application {
         library.welcome();
         displayMenu();
         String input = getInput();
-        while(!input.equals("1")) {
-            out.println("Select a valid option!");
+        while (!input.equals("Q")) {
+            if (input.equals("1")) {
+                library.displayBooks();
+            } else {
+                out.println("Select a valid option!");
+            }
             displayMenu();
             input = getInput();
         }
-        library.displayBooks();
     }
 
     public void displayMenu() {
         out.println("1. List books");
+        out.println("Q. Quit");
         out.print("Enter option number: ");
     }
 
