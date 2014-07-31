@@ -72,7 +72,7 @@ public class ApplicationTest {
     public void shouldPromptUserWhenCheckoutSelected() {
         Application app = new Application(library, fakePrintStream, new BufferedReader(new StringReader("2\nQ")));
         app.start();
-        verify(library).displayBooks();
+        verify(library).displayBooksWithNumbers();
         verify(fakePrintStream).print("Choose a book: ");
     }
 

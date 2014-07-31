@@ -14,7 +14,7 @@ public class CheckoutBookOption implements MenuOption {
 
     @Override
     public void execute() {
-        library.displayBooks();
+        library.displayBooksWithNumbers();
         out.print("Choose a book: ");
     }
 }

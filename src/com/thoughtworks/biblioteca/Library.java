@@ -22,4 +22,11 @@ public class Library {
             out.println(book.getDetails());
         }
     }
+
+    public void displayBooksWithNumbers() {
+        for (int i=1; i<=books.size(); i++) {
+            out.print(i + ". ");
+            out.println(books.get(i-1).getDetails());
+        }
+    }
 }

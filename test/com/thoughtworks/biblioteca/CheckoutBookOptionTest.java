@@ -24,7 +24,7 @@ public class CheckoutBookOptionTest {
     @Test
     public void shouldPromptUserOnExecute() {
         checkoutBookOption.execute();
-        verify(library).displayBooks();
+        verify(library).displayBooksWithNumbers();
         verify(fakePrintStream).print("Choose a book: ");
     }
 }

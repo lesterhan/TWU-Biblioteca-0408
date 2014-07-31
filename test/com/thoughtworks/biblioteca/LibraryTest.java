@@ -22,14 +22,42 @@ public class LibraryTest {
     }
 
     @Test
-    public void shouldPrintOneBookWhenLibraryHasOneBook(){
+    public void shouldPrintOneBookWhenLibraryHasOneBook() {
         List<Book> oneBook = new ArrayList<Book>();
-        Book book1 = new Book("BookName", "BookAuthor", "2000");
+        Book book1 = mock(Book.class);
         oneBook.add(book1);
         Library myLibrary = new Library(oneBook, fakePrintStream);
 
         myLibrary.displayBooks();
-        verify(fakePrintStream).println("BookName                       BookAuthor                     2000");
+
+        verify(book1).getDetails();
+    }
+
+    @Test
+    public void shouldPrintBooksWhenLibraryHasMultipleBooks(){
+        List<Book> books = new ArrayList<Book>();
+        books.add(mock(Book.class));
+        books.add(mock(Book.class));
+        Library myLibrary = new Library(books, fakePrintStream);
+
+        myLibrary.displayBooks();
+
+        verifyBookListPrinted(books);
+    }
+
+    @Test
+    public void shouldListBooksWithNumbers() {
+        List<Book> books = new ArrayList<Book>();
+        books.add(mock(Book.class));
+        books.add(mock(Book.class));
+        Library myLibrary = new Library(books, fakePrintStream);
+
+        myLibrary.displayBooksWithNumbers();
+
+        verifyBookListPrinted(books);
+
+        verify(fakePrintStream).print("1. ");
+        verify(fakePrintStream).print("2. ");
     }
 
     @Test
@@ -48,6 +76,12 @@ public class LibraryTest {
 
         myLibrary.welcome();
         verify(fakePrintStream).println("Welcome!");
+    }
+
+    private void verifyBookListPrinted(List<Book> books) {
+        for (Book book : books) {
+            verify(book).getDetails();
+        }
     }
 
 }
