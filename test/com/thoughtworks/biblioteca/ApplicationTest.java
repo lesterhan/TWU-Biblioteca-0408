@@ -53,7 +53,7 @@ public class ApplicationTest {
 
     @Test
     public void shouldPrintErrorMessageWhenInvalidOptionIsChosen() {
-        Application app = new Application(library, fakePrintStream, new BufferedReader(new StringReader("2\n1\nQ")));
+        Application app = new Application(library, fakePrintStream, new BufferedReader(new StringReader("X\n1\nQ")));
         app.start();
         verify(fakePrintStream).println("Select a valid option!");
         verifyMenuDisplayedTimes(3);
@@ -68,8 +68,17 @@ public class ApplicationTest {
         verify(library, times(2)).displayBooks();
     }
 
+    @Test
+    public void shouldPromptUserWhenCheckoutSelected() {
+        Application app = new Application(library, fakePrintStream, new BufferedReader(new StringReader("2\nQ")));
+        app.start();
+        verify(library).displayBooks();
+        verify(fakePrintStream).print("Choose a book: ");
+    }
+
     private void verifyMenuDisplayedTimes(int t) {
         verify(fakePrintStream, times(t)).println("1. List books");
+        verify(fakePrintStream, times(t)).println("2. Checkout book");
         verify(fakePrintStream, times(t)).println("Q. Quit");
         verify(fakePrintStream, times(t)).print("Enter option number: ");
     }
