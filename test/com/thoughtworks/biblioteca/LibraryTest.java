@@ -7,6 +7,7 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -14,19 +15,22 @@ import static org.mockito.Mockito.verify;
 public class LibraryTest {
 
     private PrintStream fakePrintStream;
+    private List<Book> books;
+    private Book book1;
+    private Library myLibrary;
 
 
     @Before
     public void setup(){
         fakePrintStream = mock(PrintStream.class);
+        books = new ArrayList<Book>();
+        book1 = mock(Book.class);
+        books.add(book1);
+        myLibrary = new Library(books, fakePrintStream);
     }
 
     @Test
     public void shouldPrintOneBookWhenLibraryHasOneBook() {
-        List<Book> oneBook = new ArrayList<Book>();
-        Book book1 = mock(Book.class);
-        oneBook.add(book1);
-        Library myLibrary = new Library(oneBook, fakePrintStream);
 
         myLibrary.displayBooks();
 
@@ -35,10 +39,8 @@ public class LibraryTest {
 
     @Test
     public void shouldPrintBooksWhenLibraryHasMultipleBooks(){
-        List<Book> books = new ArrayList<Book>();
-        books.add(mock(Book.class));
-        books.add(mock(Book.class));
-        Library myLibrary = new Library(books, fakePrintStream);
+        Book book2 = mock(Book.class);
+        books.add(book2);
 
         myLibrary.displayBooks();
 
@@ -47,10 +49,8 @@ public class LibraryTest {
 
     @Test
     public void shouldListBooksWithNumbers() {
-        List<Book> books = new ArrayList<Book>();
-        books.add(mock(Book.class));
-        books.add(mock(Book.class));
-        Library myLibrary = new Library(books, fakePrintStream);
+        Book book2 = mock(Book.class);
+        books.add(book2);
 
         myLibrary.displayBooksWithNumbers();
 
@@ -71,11 +71,33 @@ public class LibraryTest {
 
     @Test
     public void welcomeMessage(){
-        List<Book> books = new ArrayList<Book>();
-        Library myLibrary = new Library(books, fakePrintStream);
-
         myLibrary.welcome();
+
         verify(fakePrintStream).println("Welcome!");
+    }
+
+    @Test
+    public void shouldRemoveCorrectBookWhenValidUserChoicePassed() {
+        Book book2 = mock(Book.class);
+        books.add(book2);
+
+        boolean checkedOut = myLibrary.checkoutBook(1);
+
+        assertEquals(checkedOut, true);
+        assertEquals(books.size(), 1);
+        assertEquals(books.get(0), book2);
+    }
+
+    @Test
+    public void shouldReturnFalseWhenInvalidUserChoicePassed() {
+        Book book2 = mock(Book.class);
+        books.add(book2);
+
+        boolean checkedOut = myLibrary.checkoutBook(10);
+
+        assertEquals(checkedOut, false);
+        assertEquals(books.size(), 2);
+
     }
 
     private void verifyBookListPrinted(List<Book> books) {
@@ -83,5 +105,4 @@ public class LibraryTest {
             verify(book).getDetails();
         }
     }
-
 }

@@ -8,8 +8,12 @@ import java.util.List;
 
 public class Main {
 
+
     public static void main(String[] args) {
-        new Application(library(), System.out, new BufferedReader(new InputStreamReader(System.in))).start();
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        Console console = new Console(bufferedReader);
+
+        new Application(library(), System.out, bufferedReader, console).start();
     }
 
     private static Library library() {

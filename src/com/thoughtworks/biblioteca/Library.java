@@ -29,4 +29,13 @@ public class Library {
             out.println(books.get(i-1).getDetails());
         }
     }
+
+    public boolean checkoutBook(int userChoice) {
+        int id = userChoice - 1;
+        if (id < books.size() && id >= 0) {
+            books.remove(id);
+            return true;
+        }
+        return false;
+    }
 }
