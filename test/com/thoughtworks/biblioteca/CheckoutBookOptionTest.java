@@ -22,6 +22,8 @@ public class CheckoutBookOptionTest {
         fakePrintStream = mock(PrintStream.class);
         console = mock(Console.class);
         checkoutBookOption = new CheckoutBookOption(library, fakePrintStream, console);
+
+        when(console.getUserInput()).thenReturn("1");
     }
 
     @Test
@@ -40,8 +42,6 @@ public class CheckoutBookOptionTest {
 
     @Test
     public void shouldCheckoutBookFromLibrary(){
-        when(console.getUserInput()).thenReturn("1");
-
         checkoutBookOption.execute();
 
         verify(library).checkoutBook(1);

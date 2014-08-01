@@ -2,15 +2,20 @@ package com.thoughtworks.biblioteca;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.PrintStream;
 
 public class Console {
 
 
     private BufferedReader reader;
+    private PrintStream printStream;
 
-    public Console(BufferedReader reader) {
+    public Console(BufferedReader reader, PrintStream printStream) {
         this.reader = reader;
+        this.printStream = printStream;
     }
+
+
 
     public String getUserInput() {
         try {
@@ -18,6 +23,10 @@ public class Console {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return null;
+        return "";
+    }
+
+    public void displayWelcomeMessage() {
+        printStream.println("Welcome!");
     }
 }

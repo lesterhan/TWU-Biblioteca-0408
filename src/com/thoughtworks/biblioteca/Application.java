@@ -1,6 +1,5 @@
 package com.thoughtworks.biblioteca;
 
-import java.io.BufferedReader;
 import java.io.PrintStream;
 import java.util.HashMap;
 import java.util.Map;
@@ -9,13 +8,11 @@ public class Application {
 
     Library library;
     PrintStream out;
-    BufferedReader in;
     Console console;
 
-    public Application(Library library, PrintStream out, BufferedReader in, Console console) {
+    public Application(Library library, PrintStream out, Console console) {
         this.library = library;
         this.out = out;
-        this.in = in;
         this.console = console;
     }
 
@@ -24,7 +21,7 @@ public class Application {
         menuOptions.put("1", new ListBookOption(library));
         menuOptions.put("2", new CheckoutBookOption(library, out, console));
 
-        library.welcome();
+        console.displayWelcomeMessage();
         displayMenu();
         String input = console.getUserInput();
 

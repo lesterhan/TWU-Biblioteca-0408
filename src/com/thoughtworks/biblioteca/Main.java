@@ -3,6 +3,7 @@ package com.thoughtworks.biblioteca;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,9 +12,10 @@ public class Main {
 
     public static void main(String[] args) {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        Console console = new Console(bufferedReader);
+        PrintStream printStream = System.out;
+        Console console = new Console(bufferedReader, printStream);
 
-        new Application(library(), System.out, bufferedReader, console).start();
+        new Application(library(), printStream, console).start();
     }
 
     private static Library library() {

@@ -70,13 +70,6 @@ public class LibraryTest {
     }
 
     @Test
-    public void welcomeMessage(){
-        myLibrary.welcome();
-
-        verify(fakePrintStream).println("Welcome!");
-    }
-
-    @Test
     public void shouldRemoveCorrectBookWhenValidUserChoicePassed() {
         Book book2 = mock(Book.class);
         books.add(book2);

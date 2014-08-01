@@ -4,26 +4,37 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.BufferedReader;
+import java.io.PrintStream;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class ConsoleTest {
 
     private Console console;
-    private BufferedReader reader;
+    private BufferedReader fakeBufferedReader;
+    private PrintStream fakePrintStream;
 
     @Before
     public void setUp() throws Exception {
-        reader = mock(BufferedReader.class);
-        console = new Console(reader);
+        fakeBufferedReader = mock(BufferedReader.class);
+        fakePrintStream = mock(PrintStream.class);
+        console = new Console(fakeBufferedReader, fakePrintStream);
     }
 
     @Test
-    public void shouldReturn3WhenUserInput3() throws Exception {
-        when(reader.readLine()).thenReturn("3");
-        assertThat(console.getUserInput(), is("3"));
+    public void shouldReturnProperUserInputAsString() throws Exception {
+        when(fakeBufferedReader.readLine()).thenReturn("Q");
+        assertThat(console.getUserInput(), is("Q"));
+    }
+
+    @Test
+    public void shouldDisplayWelcomeMessage() {
+        console.displayWelcomeMessage();
+
+        verify(fakePrintStream).println("Welcome!");
     }
 }

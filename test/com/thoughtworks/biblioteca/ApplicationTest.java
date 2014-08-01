@@ -2,36 +2,32 @@ package com.thoughtworks.biblioteca;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.BufferedReader;
 import java.io.PrintStream;
-import java.io.StringReader;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 public class ApplicationTest {
 
     private Library library;
     private Application application;
     private PrintStream fakePrintStream;
-    private BufferedReader fakeInputStream;
     private Console fakeConsole;
 
     @Before
     public void setUp() throws Exception {
         library = mock(Library.class);
         fakePrintStream = mock(PrintStream.class);
-        fakeInputStream = new BufferedReader(new StringReader("1\nQ"));
         fakeConsole = mock(Console.class);
-        application = new Application(library, fakePrintStream, fakeInputStream, fakeConsole);
+        application = new Application(library, fakePrintStream, fakeConsole);
+
+        when(fakeConsole.getUserInput()).thenReturn("1").thenReturn("Q");
     }
 
     @Test
     public void shouldWelcomeUserWhenStarting(){
         application.start();
 
-        verify(library).welcome();
+        verify(fakeConsole).displayWelcomeMessage();
     }
 
     @Test
@@ -42,6 +38,8 @@ public class ApplicationTest {
 
     @Test
     public void shouldGetUserInput(){
+        when(fakeConsole.getUserInput()).thenReturn("Q");
+
         application.start();
 
         verify(fakeConsole).getUserInput();
@@ -56,9 +54,9 @@ public class ApplicationTest {
 
     @Test
     public void shouldPrintErrorMessageWhenInvalidOptionIsChosen() {
-        Application app = new Application(library, fakePrintStream, new BufferedReader(new StringReader("X\n1\nQ")), fakeConsole);
+        when(fakeConsole.getUserInput()).thenReturn("X").thenReturn("1").thenReturn("Q");
 
-        app.start();
+        application.start();
         verify(fakePrintStream).println("Select a valid option!");
         verifyMenuDisplayedTimes(3);
         verify(library).displayBooks();
@@ -66,23 +64,12 @@ public class ApplicationTest {
 
     @Test
     public void shouldLoopUntilQuit() {
-        Application app = new Application(library, fakePrintStream, new BufferedReader(new StringReader("1\n1\nQ")), fakeConsole);
+        when(fakeConsole.getUserInput()).thenReturn("1").thenReturn("1").thenReturn("Q");
 
-        app.start();
+        application.start();
 
         verifyMenuDisplayedTimes(3);
         verify(library, times(2)).displayBooks();
-    }
-
-    @Test
-    public void shouldPromptUserWhenCheckoutSelected() {
-        Application app = new Application(library, fakePrintStream, new BufferedReader(new StringReader("2\nQ")), fakeConsole);
-
-        CheckoutBookOption checkoutBookOption = mock(CheckoutBookOption.class);
-
-        app.start();
-
-        verify(checkoutBookOption).execute();
     }
 
     private void verifyMenuDisplayedTimes(int t) {
