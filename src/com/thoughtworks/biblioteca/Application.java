@@ -7,19 +7,19 @@ import java.util.Map;
 public class Application {
 
     Library library;
-    PrintStream out;
+    PrintStream printStream;
     Console console;
 
-    public Application(Library library, PrintStream out, Console console) {
+    public Application(Library library, PrintStream printStream, Console console) {
         this.library = library;
-        this.out = out;
+        this.printStream = printStream;
         this.console = console;
     }
 
     public void start() {
         Map<String, MenuOption> menuOptions = new HashMap<String, MenuOption>();
         menuOptions.put("1", new ListBookOption(library));
-        menuOptions.put("2", new CheckoutBookOption(library, out, console));
+        menuOptions.put("2", new CheckoutBookOption(library, printStream, console));
 
         console.displayWelcomeMessage();
         displayMenu();
@@ -29,7 +29,7 @@ public class Application {
             if (menuOptions.containsKey(input)) {
                 menuOptions.get(input).execute();
             } else {
-                out.println("Select a valid option!");
+                printStream.println("Select a valid option!");
             }
 
             displayMenu();
@@ -38,9 +38,11 @@ public class Application {
     }
 
     public void displayMenu() {
-        out.println("1. List books");
-        out.println("2. Checkout book");
-        out.println("Q. Quit");
-        out.print("Enter option number: ");
+        printStream.println();
+        printStream.println("1. List books");
+        printStream.println("2. Checkout book");
+        printStream.println("Q. Quit");
+        printStream.println();
+        printStream.print("Enter option number: ");
     }
 }

@@ -5,28 +5,24 @@ import java.util.List;
 
 public class Library {
     private List<Book> books;
-    private PrintStream out;
+    private PrintStream printStream;
 
-    public Library(List<Book> books, PrintStream out) {
+    public Library(List<Book> books, PrintStream printStream) {
 
         this.books = books;
-        this.out = out;
-    }
-
-    public void welcome() {
-        out.println("Welcome!");
+        this.printStream = printStream;
     }
 
     public void displayBooks() {
         for (Book book : books) {
-            out.println(book.getDetails());
+            printStream.println(book.getDetails());
         }
     }
 
     public void displayBooksWithNumbers() {
         for (int i=1; i<=books.size(); i++) {
-            out.print(i + ". ");
-            out.println(books.get(i-1).getDetails());
+            printStream.print(i + ". ");
+            printStream.println(books.get(i - 1).getDetails());
         }
     }
 

@@ -43,7 +43,14 @@ public class CheckoutBookOptionTest {
     @Test
     public void shouldCheckoutBookFromLibrary(){
         checkoutBookOption.execute();
-
         verify(library).checkoutBook(1);
+    }
+
+    @Test
+    public void shouldDisplayMessageWhenCheckoutSuccessful() {
+        when(library.checkoutBook(1)).thenReturn(true);
+        checkoutBookOption.execute();
+        verify(fakePrintStream).println("Thank you! Enjoy your book.");
+
     }
 }
