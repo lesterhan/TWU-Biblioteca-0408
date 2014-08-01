@@ -21,6 +21,9 @@ public class CheckoutBookOption implements MenuOption {
         String userInput = console.getUserInput();
         if(library.checkoutBook(Integer.parseInt(userInput))) {
             printStream.println("Thank you! Enjoy your book.");
+        } else {
+            printStream.println("That book is not available.");
+            printStream.print("Please re-enter a valid book choice: ");
         }
     }
 }

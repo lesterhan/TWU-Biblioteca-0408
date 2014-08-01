@@ -18,12 +18,15 @@ public class Console {
 
 
     public String getUserInput() {
+        String userInput = "";
         try {
-            return reader.readLine();
+            userInput = reader.readLine();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return "";
+        printStream.println();
+
+        return userInput;
     }
 
     public void displayWelcomeMessage() {

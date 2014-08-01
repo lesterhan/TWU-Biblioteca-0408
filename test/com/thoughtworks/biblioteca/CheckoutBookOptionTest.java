@@ -53,4 +53,20 @@ public class CheckoutBookOptionTest {
         verify(fakePrintStream).println("Thank you! Enjoy your book.");
 
     }
+
+    @Test
+    public void shouldDisplayMessageWhenCheckoutUnsuccessful() {
+        when(library.checkoutBook(3)).thenReturn(false);
+        checkoutBookOption.execute();
+        verify(fakePrintStream).println("That book is not available.");
+
+    }
+
+    @Test
+    public void shouldRepromptUserForBookWhenUserChoiceIsInvalid() {
+        when(library.checkoutBook(3)).thenReturn(false);
+        checkoutBookOption.execute();
+        verify(fakePrintStream).println("That book is not available.");
+        verify(fakePrintStream).print("Please re-enter a valid book choice: ");
+    }
 }
