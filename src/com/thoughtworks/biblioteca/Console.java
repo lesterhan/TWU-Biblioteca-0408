@@ -32,4 +32,8 @@ public class Console {
     public void displayWelcomeMessage() {
         printStream.println("Welcome!");
     }
+
+    public void displayChooseBookPromptMessage() {
+        printStream.print("Choose a book: ");
+    }
 }

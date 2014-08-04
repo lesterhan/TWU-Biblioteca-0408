@@ -37,4 +37,11 @@ public class ConsoleTest {
 
         verify(fakePrintStream).println("Welcome!");
     }
+
+    @Test
+    public void shouldDisplayPromptMessage(){
+        console.displayChooseBookPromptMessage();
+
+        verify(fakePrintStream).print("Choose a book: ");
+    }
 }
