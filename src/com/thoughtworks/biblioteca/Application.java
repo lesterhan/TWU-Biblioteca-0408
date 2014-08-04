@@ -36,6 +36,7 @@ public class Application {
 
     public void displayMenu() {
         printStream.println();
+        printStream.println("0. Log in");
         printStream.println("1. List books");
         printStream.println("2. Checkout book");
         printStream.println("3. Return book");

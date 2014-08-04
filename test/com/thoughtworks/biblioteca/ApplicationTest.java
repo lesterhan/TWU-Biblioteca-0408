@@ -119,6 +119,7 @@ public class ApplicationTest {
     }
 
     private void verifyMenuDisplayedTimes(int t) {
+        verify(fakePrintStream, times(t)).println("0. Log in");
         verify(fakePrintStream, times(t)).println("1. List books");
         verify(fakePrintStream, times(t)).println("2. Checkout book");
         verify(fakePrintStream, times(t)).println("3. Return book");

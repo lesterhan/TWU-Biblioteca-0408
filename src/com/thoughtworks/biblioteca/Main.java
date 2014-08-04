@@ -18,6 +18,7 @@ public class Main {
         Console console = new Console(bufferedReader, printStream);
         Library library = library();
         Map<String, MenuOption> menuOptions = new HashMap<String, MenuOption>();
+        menuOptions.put("0", new UserLoginOption());
         menuOptions.put("1", new ListBookOption(library));
         menuOptions.put("2", new CheckoutBookOption(library, printStream, console));
         menuOptions.put("3", new ReturnBookOption(library, console));
