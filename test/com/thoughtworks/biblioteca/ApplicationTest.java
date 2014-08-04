@@ -123,6 +123,7 @@ public class ApplicationTest {
         verify(fakePrintStream, times(t)).println("2. Checkout book");
         verify(fakePrintStream, times(t)).println("3. Return book");
         verify(fakePrintStream, times(t)).println("4. List movies");
+        verify(fakePrintStream, times(t)).println("5. Checkout movie");
         verify(fakePrintStream, times(t)).println("Q. Quit");
         verify(fakePrintStream, times(t)).print("Enter option number: ");
     }

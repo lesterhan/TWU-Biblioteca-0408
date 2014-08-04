@@ -42,11 +42,11 @@ public class Console {
     }
 
     public void displaySuccessfulCheckout() {
-        printStream.print("Thank you! Enjoy your book.");
+        printStream.print("Thank you! Enjoy.");
     }
 
     public void displayUnsuccessfulCheckout() {
-        printStream.println("That book is not available.");
+        printStream.println("That item is not available.");
     }
 
     public void displayUnsuccessfulReturn() {

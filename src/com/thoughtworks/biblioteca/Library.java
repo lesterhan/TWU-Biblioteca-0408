@@ -63,4 +63,21 @@ public class Library {
             printStream.println(movie.getDetails());
         }
     }
+
+    public void displayMoviesWithNumbers() {
+        for (int i=1; i<= moviesInStock.size(); i++) {
+            printStream.print(i + ". ");
+            printStream.println(moviesInStock.get(i - 1).getDetails());
+        }
+    }
+
+    public boolean checkoutMovie(int movieNumber) {
+        int index = movieNumber - 1;
+        if (index >= 0 && index < moviesInStock.size()) {
+            Movie movie = moviesInStock.remove(index);
+            moviesCheckedOut.add(movie);
+            return true;
+        }
+        return false;
+    }
 }

@@ -55,13 +55,13 @@ public class ConsoleTest {
     public void shouldDisplaySuccessfulCheckoutMessage(){
         console.displaySuccessfulCheckout();
 
-        verify(fakePrintStream).print("Thank you! Enjoy your book.");
+        verify(fakePrintStream).print("Thank you! Enjoy.");
     }
     @Test
     public void shouldDisplayUnsuccessfulCheckoutMessage(){
         console.displayUnsuccessfulCheckout();
 
-        verify(fakePrintStream).println("That book is not available.");
+        verify(fakePrintStream).println("That item is not available.");
     }
 
     @Test

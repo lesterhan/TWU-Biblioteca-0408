@@ -22,6 +22,7 @@ public class Main {
         menuOptions.put("2", new CheckoutBookOption(library, printStream, console));
         menuOptions.put("3", new ReturnBookOption(library, console));
         menuOptions.put("4", new ListMovieOption(library));
+        menuOptions.put("5", new CheckoutMovieOption(library, printStream, console));
 
         new Application(menuOptions, library(), printStream, console).start();
     }
