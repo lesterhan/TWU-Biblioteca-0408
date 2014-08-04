@@ -16,6 +16,9 @@ public class ReturnBookOption implements MenuOption{
         console.displayChooseBookPromptMessage();
 
         String userInput = console.getUserInput();
-        library.returnBook(Integer.parseInt(userInput));
+        if(library.returnBook(Integer.parseInt(userInput))){
+            console.displaySuccessfulReturn();
+        }
+        else console.displayUnsuccessfulReturn();
     }
 }

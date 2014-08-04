@@ -15,6 +15,7 @@ public class ApplicationTest {
     private PrintStream fakePrintStream;
     private Console fakeConsole;
     private ListBookOption listBookOption;
+    private ListMovieOption listMovieOption;
     private CheckoutBookOption checkoutBookOption;
     private Map<String, MenuOption> menu;
     private ReturnBookOption returnBookOption;
@@ -25,12 +26,14 @@ public class ApplicationTest {
         fakePrintStream = mock(PrintStream.class);
         fakeConsole = mock(Console.class);
         listBookOption = mock(ListBookOption.class);
+        listMovieOption = mock(ListMovieOption.class);
         checkoutBookOption = mock(CheckoutBookOption.class);
         returnBookOption = mock(ReturnBookOption.class);
         menu = new HashMap<String, MenuOption>();
         menu.put("1", listBookOption);
         menu.put("2", checkoutBookOption);
         menu.put("3", returnBookOption);
+        menu.put("4", listMovieOption);
 
         application = new Application(menu, library, fakePrintStream, fakeConsole);
 
@@ -80,7 +83,7 @@ public class ApplicationTest {
     }
 
     @Test
-    public void shouldSelectListBooks() {
+    public void shouldListBooks() {
         when(fakeConsole.getUserInput()).thenReturn("1").thenReturn("Q");
 
         application.start();
@@ -106,10 +109,20 @@ public class ApplicationTest {
         verify(returnBookOption).execute();
     }
 
+    @Test
+    public void shouldListMoves() {
+        when(fakeConsole.getUserInput()).thenReturn("4").thenReturn("Q");
+
+        application.start();
+
+        verify(listMovieOption).execute();
+    }
+
     private void verifyMenuDisplayedTimes(int t) {
         verify(fakePrintStream, times(t)).println("1. List books");
         verify(fakePrintStream, times(t)).println("2. Checkout book");
         verify(fakePrintStream, times(t)).println("3. Return book");
+        verify(fakePrintStream, times(t)).println("4. List movies");
         verify(fakePrintStream, times(t)).println("Q. Quit");
         verify(fakePrintStream, times(t)).print("Enter option number: ");
     }

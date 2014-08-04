@@ -36,4 +36,21 @@ public class Console {
     public void displayChooseBookPromptMessage() {
         printStream.print("Choose a book: ");
     }
+
+    public void displaySuccessfulReturn() {
+        printStream.print("Thank you for returning the book.");
+    }
+
+    public void displaySuccessfulCheckout() {
+        printStream.print("Thank you! Enjoy your book.");
+    }
+
+    public void displayUnsuccessfulCheckout() {
+        printStream.println("That book is not available.");
+    }
+
+    public void displayUnsuccessfulReturn() {
+        printStream.println("That is not a valid book to return.");
+
+    }
 }

@@ -20,10 +20,9 @@ public class CheckoutBookOption implements MenuOption {
         printStream.print("Choose a book: ");
         String userInput = console.getUserInput();
         if(library.checkoutBook(Integer.parseInt(userInput))) {
-            printStream.println("Thank you! Enjoy your book.");
+            console.displaySuccessfulCheckout();
         } else {
-            printStream.println("That book is not available.");
-            printStream.print("Please re-enter a valid book choice: ");
+            console.displayUnsuccessfulCheckout();
         }
     }
 }

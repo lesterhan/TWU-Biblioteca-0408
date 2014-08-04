@@ -39,6 +39,7 @@ public class Application {
         printStream.println("1. List books");
         printStream.println("2. Checkout book");
         printStream.println("3. Return book");
+        printStream.println("4. List movies");
         printStream.println("Q. Quit");
         printStream.println();
         printStream.print("Enter option number: ");

@@ -41,7 +41,6 @@ public class Library {
         int index = bookNumber - 1;
         if (index >= 0 && index < booksCheckedOut.size()) {
             Book book = booksCheckedOut.remove(index);
-
             booksInStock.add(book);
             return true;
         }

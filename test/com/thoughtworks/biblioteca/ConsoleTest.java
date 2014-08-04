@@ -44,4 +44,30 @@ public class ConsoleTest {
 
         verify(fakePrintStream).print("Choose a book: ");
     }
+
+    @Test
+    public void shouldDisplaySuccessfulReturnMessage(){
+        console.displaySuccessfulReturn();
+
+        verify(fakePrintStream).print("Thank you for returning the book.");
+    }
+    @Test
+    public void shouldDisplaySuccessfulCheckoutMessage(){
+        console.displaySuccessfulCheckout();
+
+        verify(fakePrintStream).print("Thank you! Enjoy your book.");
+    }
+    @Test
+    public void shouldDisplayUnsuccessfulCheckoutMessage(){
+        console.displayUnsuccessfulCheckout();
+
+        verify(fakePrintStream).println("That book is not available.");
+    }
+
+    @Test
+    public void shouldDisplayUnsuccessfulReturnMessage(){
+        console.displayUnsuccessfulReturn();
+
+        verify(fakePrintStream).println("That is not a valid book to return.");
+    }
 }

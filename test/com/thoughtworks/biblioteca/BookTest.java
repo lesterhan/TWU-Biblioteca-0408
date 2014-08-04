@@ -2,7 +2,7 @@ package com.thoughtworks.biblioteca;
 
 import org.hamcrest.Matchers;
 import org.junit.Test;
-
+import org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
 
 public class BookTest {
@@ -12,6 +12,8 @@ public class BookTest {
         assertThat(book.getDetails(), Matchers.containsString("Book Name"));
         assertThat(book.getDetails(), Matchers.containsString("Book Author"));
         assertThat(book.getDetails(), Matchers.containsString("2000"));
+
+
     }
 
     @Test

@@ -3,6 +3,7 @@ package com.thoughtworks.biblioteca;
 import org.junit.Before;
 import org.junit.Test;
 
+import static org.mockito.Matchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -43,11 +44,24 @@ public class ReturnBookOptionTest {
         verify(console).getUserInput();
     }
 
-
     @Test
     public void shouldReturnBook1WhenExecuteCalledWithInput1(){
         returnBookOption.execute();
 
         verify(library).returnBook(1);
+    }
+
+    @Test
+    public void shouldDisplayMessageWhenReturnSuccessful(){
+        when(library.returnBook(anyInt())).thenReturn(true);
+        returnBookOption.execute();
+        verify(console).displaySuccessfulReturn();
+    }
+
+    @Test
+    public void shouldDisplayMessageWhenReturnUnsuccessful(){
+        when(library.returnBook(anyInt())).thenReturn(false);
+        returnBookOption.execute();
+        verify(console).displayUnsuccessfulReturn();
     }
 }
