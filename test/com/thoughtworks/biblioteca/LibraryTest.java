@@ -22,6 +22,10 @@ public class LibraryTest {
     private Book book1;
     private Book checkedOutBook1;
     private Library myLibrary;
+    private Movie movie1;
+    private List<Movie> stockedMovies;
+    private List<Movie> checkedOutMovies;
+    private Movie checkedOutMovie1;
 
 
     @Before
@@ -35,7 +39,15 @@ public class LibraryTest {
         checkedOutBook1 = mock(Book.class);
         checkedOutBooks.add(checkedOutBook1);
 
-        myLibrary = new Library(stockedBooks, checkedOutBooks, fakePrintStream);
+        stockedMovies = new ArrayList<Movie>();
+        movie1 = mock(Movie.class);
+        stockedMovies.add(movie1);
+
+        checkedOutMovies = new ArrayList<Movie>();
+        checkedOutMovie1 = mock(Movie.class);
+        checkedOutMovies.add(checkedOutMovie1);
+
+        myLibrary = new Library(stockedBooks, checkedOutBooks, stockedMovies, checkedOutMovies, fakePrintStream);
     }
 
     @Test
@@ -85,7 +97,7 @@ public class LibraryTest {
     @Test
     public void shouldPrintNothingWhenLibraryIsEmpty(){
         List<Book> noBooks = new ArrayList<Book>();
-        Library myLibrary = new Library(noBooks, checkedOutBooks, fakePrintStream);
+        Library myLibrary = new Library(noBooks, checkedOutBooks, stockedMovies, checkedOutMovies, fakePrintStream);
 
         myLibrary.displayBooks();
         verify(fakePrintStream, times(0)).println();
@@ -148,6 +160,12 @@ public class LibraryTest {
         myLibrary.returnBook(1);
 
         assertThat(checkedOutBooks.size(), is(0));
+    }
+
+    @Test
+    public void shouldPrintOneMovieWhenLibraryHasOneMovie() {
+        myLibrary.displayMovies();
+        verify(movie1).getDetails();
     }
 
     private void verifyBookListPrinted(List<Book> books) {

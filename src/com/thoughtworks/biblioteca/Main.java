@@ -21,6 +21,7 @@ public class Main {
         menuOptions.put("1", new ListBookOption(library));
         menuOptions.put("2", new CheckoutBookOption(library, printStream, console));
         menuOptions.put("3", new ReturnBookOption(library, console));
+        menuOptions.put("4", new ListMovieOption(library));
 
         new Application(menuOptions, library(), printStream, console).start();
     }
@@ -38,6 +39,18 @@ public class Main {
         listOfCheckedOutBooks.add(checkedOutBook1);
         listOfCheckedOutBooks.add(checkedOutBook2);
 
-        return new Library(listOfBooks, listOfCheckedOutBooks, System.out);
+        List<Movie> listOfMovies = new ArrayList<Movie>();
+        Movie movie1 = new Movie("The Matrix", "1999", "Wachowski's","8");
+        Movie movie2 = new Movie("Bill and Ted's Excellent Adventure", "1990", "Sad Keanu", "9");
+        listOfMovies.add(movie1);
+        listOfMovies.add(movie2);
+
+        List<Movie> listOfCheckedOutMovies = new ArrayList<Movie>();
+        Movie checkedOutMovie1 = new Movie("Twilight", "2010", "Kristen Steward", "5");
+        Movie checkedOutMovie2 = new Movie("Water for Elephants", "2012", "Robert Patty", "7");
+        listOfCheckedOutMovies.add(checkedOutMovie1);
+        listOfCheckedOutMovies.add(checkedOutMovie2);
+
+        return new Library(listOfBooks, listOfCheckedOutBooks, listOfMovies, listOfCheckedOutMovies, System.out);
     }
 }

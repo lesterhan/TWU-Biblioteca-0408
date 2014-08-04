@@ -7,10 +7,14 @@ public class Library {
     private List<Book> booksInStock;
     private List<Book> booksCheckedOut;
     private PrintStream printStream;
+    private List<Movie> moviesInStock;
+    private List<Movie> moviesCheckedOut;
 
-    public Library(List<Book> booksInStock, List<Book> booksCheckedOut, PrintStream printStream) {
+    public Library(List<Book> booksInStock, List<Book> booksCheckedOut, List<Movie> moviesInStock, List<Movie> moviesCheckedOut, PrintStream printStream) {
         this.booksCheckedOut = booksCheckedOut;
         this.booksInStock = booksInStock;
+        this.moviesInStock = moviesInStock;
+        this.moviesCheckedOut = moviesCheckedOut;
         this.printStream = printStream;
     }
 
@@ -51,6 +55,12 @@ public class Library {
         for (int i=1; i<= booksCheckedOut.size(); i++) {
             printStream.print(i + ". ");
             printStream.println(booksCheckedOut.get(i - 1).getDetails());
+        }
+    }
+
+    public void displayMovies() {
+        for (Movie movie : moviesInStock) {
+            printStream.println(movie.getDetails());
         }
     }
 }
